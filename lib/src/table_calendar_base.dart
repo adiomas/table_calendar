@@ -35,6 +35,7 @@ class TableCalendarBase extends StatefulWidget {
   final SwipeCallback? onVerticalSwipe;
   final void Function(DateTime focusedDay)? onPageChanged;
   final void Function(PageController pageController)? onCalendarCreated;
+  final Axis? scrollDirection;
 
   TableCalendarBase({
     Key? key,
@@ -72,6 +73,7 @@ class TableCalendarBase extends StatefulWidget {
     this.onVerticalSwipe,
     this.onPageChanged,
     this.onCalendarCreated,
+    this.scrollDirection,
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(isSameDay(focusedDay, firstDay) || focusedDay.isAfter(firstDay)),
         assert(isSameDay(focusedDay, lastDay) || focusedDay.isBefore(lastDay)),
@@ -209,6 +211,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
               scrollPhysics: _canScrollHorizontally
                   ? PageScrollPhysics()
                   : NeverScrollableScrollPhysics(),
+              scrollDirection: widget.scrollDirection,
               firstDay: widget.firstDay,
               lastDay: widget.lastDay,
               startingDayOfWeek: widget.startingDayOfWeek,
