@@ -61,6 +61,9 @@ class TableCalendar<T> extends StatefulWidget {
   /// Overriding this property might be useful for testing.
   final DateTime? currentDay;
 
+  ///Used for setting the scroll direction, Defaults to `Axis.horizontal`
+  final Axis? scrollDirection;
+
   /// List of days treated as weekend days.
   /// Use built-in `DateTime` weekday constants (e.g. `DateTime.monday`) instead of `int` literals (e.g. `1`).
   final List<int> weekendDays;
@@ -246,6 +249,7 @@ class TableCalendar<T> extends StatefulWidget {
     this.calendarStyle = const CalendarStyle(),
     this.calendarBuilders = const CalendarBuilders(),
     this.rangeSelectionMode = RangeSelectionMode.toggledOff,
+    this.scrollDirection,
     this.eventLoader,
     this.enabledDayPredicate,
     this.selectedDayPredicate,
@@ -484,6 +488,7 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
               widget.onCalendarCreated?.call(pageController);
             },
             focusedDay: _focusedDay.value,
+            scrollDirection: widget.scrollDirection,
             calendarFormat: widget.calendarFormat,
             availableGestures: widget.availableGestures,
             firstDay: widget.firstDay,
