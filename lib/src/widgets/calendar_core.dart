@@ -56,7 +56,7 @@ class CalendarCore extends StatelessWidget {
     this.rowDecoration,
     this.tableBorder,
     this.scrollPhysics,
-    this.scrollDirection = Axis.horizontal,
+    this.scrollDirection,
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         super(key: key);
 
@@ -65,7 +65,7 @@ class CalendarCore extends StatelessWidget {
     return PageView.builder(
       controller: pageController,
       physics: scrollPhysics,
-      scrollDirection: scrollDirection!,
+      scrollDirection: scrollDirection ?? Axis.horizontal,
       itemCount: _getPageCount(calendarFormat, firstDay, lastDay),
       itemBuilder: (context, index) {
         final baseDay = _getBaseDay(calendarFormat, index);
