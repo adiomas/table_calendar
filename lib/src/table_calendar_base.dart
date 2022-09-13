@@ -211,7 +211,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
               scrollPhysics: _canScrollHorizontally
                   ? PageScrollPhysics()
                   : NeverScrollableScrollPhysics(),
-              scrollDirection: widget.scrollDirection,
+              scrollDirection: widget.scrollDirection ?? Axis.horizontal,
               firstDay: widget.firstDay,
               lastDay: widget.lastDay,
               startingDayOfWeek: widget.startingDayOfWeek,
