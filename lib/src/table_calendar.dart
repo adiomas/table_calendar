@@ -207,6 +207,9 @@ class TableCalendar<T> extends StatefulWidget {
   /// Called when the calendar is created. Exposes its PageController.
   final void Function(PageController pageController)? onCalendarCreated;
 
+  /// Whether to display chevron icons
+  final bool showChevronIcons;
+
   /// Creates a `TableCalendar` widget.
   TableCalendar({
     Key? key,
@@ -249,6 +252,7 @@ class TableCalendar<T> extends StatefulWidget {
     this.calendarStyle = const CalendarStyle(),
     this.calendarBuilders = const CalendarBuilders(),
     this.rangeSelectionMode = RangeSelectionMode.toggledOff,
+    this.showChevronIcons = false,
     this.scrollDirection,
     this.eventLoader,
     this.enabledDayPredicate,
@@ -477,6 +481,7 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
 
                   widget.onFormatChanged?.call(format);
                 },
+                showChevronIcons: widget.showChevronIcons,
               );
             },
           ),

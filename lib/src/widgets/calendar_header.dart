@@ -21,6 +21,7 @@ class CalendarHeader extends StatelessWidget {
   final ValueChanged<CalendarFormat> onFormatButtonTap;
   final Map<CalendarFormat, String> availableCalendarFormats;
   final DayBuilder? headerTitleBuilder;
+  final bool showChevronIcons;
 
   const CalendarHeader({
     Key? key,
@@ -34,6 +35,7 @@ class CalendarHeader extends StatelessWidget {
     required this.onHeaderLongPress,
     required this.onFormatButtonTap,
     required this.availableCalendarFormats,
+    required this.showChevronIcons,
     this.headerTitleBuilder,
   }) : super(key: key);
 
@@ -77,20 +79,22 @@ class CalendarHeader extends StatelessWidget {
                 showsNextFormat: headerStyle.formatButtonShowsNext,
               ),
             ),
-          if (headerStyle.leftChevronVisible)
-            CustomIconButton(
-              icon: headerStyle.leftChevronIcon,
-              onTap: onLeftChevronTap,
-              margin: headerStyle.leftChevronMargin,
-              padding: headerStyle.leftChevronPadding,
-            ),
-          if (headerStyle.rightChevronVisible)
-            CustomIconButton(
-              icon: headerStyle.rightChevronIcon,
-              onTap: onRightChevronTap,
-              margin: headerStyle.rightChevronMargin,
-              padding: headerStyle.rightChevronPadding,
-            ),
+          if (showChevronIcons) ...[
+            if (headerStyle.leftChevronVisible)
+              CustomIconButton(
+                icon: headerStyle.leftChevronIcon,
+                onTap: onLeftChevronTap,
+                margin: headerStyle.leftChevronMargin,
+                padding: headerStyle.leftChevronPadding,
+              ),
+            if (headerStyle.rightChevronVisible)
+              CustomIconButton(
+                icon: headerStyle.rightChevronIcon,
+                onTap: onRightChevronTap,
+                margin: headerStyle.rightChevronMargin,
+                padding: headerStyle.rightChevronPadding,
+              ),
+          ]
         ],
       ),
     );
